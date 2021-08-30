@@ -9,7 +9,8 @@ import {
 	NumberInputField,
 	NumberInputStepper,
 	NumberIncrementStepper,
-	NumberDecrementStepper
+	NumberDecrementStepper,
+	VStack
 } from '@chakra-ui/react'
 
 const categories = [
@@ -50,6 +51,18 @@ const categories = [
 		value: '16'
 	},
 	{
+		name: 'Entertainment: Japanese Anime & Manga',
+		value: '31'
+	},
+	{
+		name: 'Entertainment: Cartoon & Animations',
+		value: '32'
+	},
+	{
+		name: 'Entertainment: Comics',
+		value: '29'
+	},
+	{
 		name: 'Science & Nature',
 		value: '17'
 	},
@@ -60,6 +73,10 @@ const categories = [
 	{
 		name: 'Science: Mathematics',
 		value: '19'
+	},
+	{
+		name: 'Science: Gadgets',
+		value: '30'
 	},
 	{
 		name: 'Mythology',
@@ -96,22 +113,6 @@ const categories = [
 	{
 		name: 'Vehicles',
 		value: '28'
-	},
-	{
-		name: 'Entertainment: Comics',
-		value: '29'
-	},
-	{
-		name: 'Science: Gadgets',
-		value: '30'
-	},
-	{
-		name: 'Entertainment: Japanese Anime & Manga',
-		value: '31'
-	},
-	{
-		name: 'Entertainment: Cartoon & Animations',
-		value: '32'
 	},
 ]
 
@@ -151,38 +152,43 @@ export function QuizForm() {
 
 	return (
 		<FormControl>
-			<FormLabel htmlFor='category'>Category</FormLabel>
-			<Select id='category' ref={categoryRef}>
-				{
-					categories.map(category => {
-						return <option value={category.value} key={category.value}>{category.name}</option>
-					})
-				}
-			</Select>
-			<FormLabel htmlFor='difficulty'>Difficulty</FormLabel>
-			<Select id='difficulty' ref={difficultyRef}>
-				{
-					difficulties.map(difficulty => {
-						return <option value={difficulty.value} key={difficulty.value}>{difficulty.name}</option>
-					})
-				}
-			</Select>
-			<FormLabel htmlFor='amount'>Number of questions</FormLabel>
-		  <NumberInput defaultValue={5} max={10} min={1} id='amount'>
-		    <NumberInputField ref={amountRef}/>
-		    <NumberInputStepper>
-		      <NumberIncrementStepper />
-		      <NumberDecrementStepper />
-		    </NumberInputStepper>
-		  </NumberInput>
-			<Button
-        mt={4}
-        colorScheme="teal"
-        type="submit"
-        onClick={handleSubmit}
-      >
-        Start
-      </Button>
+			<VStack
+				spacing={4}
+			  align="stretch"
+			>
+				<FormLabel htmlFor='category'>Category</FormLabel>
+				<Select id='category' ref={categoryRef}>
+					{
+						categories.map(category => {
+							return <option value={category.value} key={category.value}>{category.name}</option>
+						})
+					}
+				</Select>
+				<FormLabel htmlFor='difficulty'>Difficulty</FormLabel>
+				<Select id='difficulty' ref={difficultyRef}>
+					{
+						difficulties.map(difficulty => {
+							return <option value={difficulty.value} key={difficulty.value}>{difficulty.name}</option>
+						})
+					}
+				</Select>
+				<FormLabel htmlFor='amount'>Number of questions</FormLabel>
+			  <NumberInput defaultValue={5} max={10} min={1} id='amount'>
+			    <NumberInputField ref={amountRef}/>
+			    <NumberInputStepper>
+			      <NumberIncrementStepper />
+			      <NumberDecrementStepper />
+			    </NumberInputStepper>
+			  </NumberInput>
+				<Button
+	        colorScheme="teal"
+	        type="submit"
+	        onClick={handleSubmit}
+	        aria-label='start quiz'
+	      >
+	        Start
+	      </Button>
+			</VStack>
 		</FormControl>
 	)
 }
