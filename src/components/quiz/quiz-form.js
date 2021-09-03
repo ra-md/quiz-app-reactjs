@@ -119,7 +119,7 @@ const categories = [
 const difficulties = [
 	{
 		name: 'Any Difficulty',
-		value: 'Any'
+		value: 'any'
 	},
 	{
 		name: 'Easy',

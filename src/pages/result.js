@@ -1,21 +1,16 @@
 import React from 'react'
 import {
-  Box,
-  Text,
-  VStack,
-  Grid,
+  Flex,
+  Container,
 } from '@chakra-ui/react'
+import {QuizResult} from '../components/quiz/quiz-result'
 
 export function Result() {
 	return (
-		<Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <VStack spacing={8}>
-          <Text>
-            Result
-          </Text>
-        </VStack>
-      </Grid>
-    </Box>
+    <Container textAlign='center'>
+      <Flex minH="100vh" direction='column' justify='center'>
+        <QuizResult/>
+      </Flex>
+    </Container>
 	)
 }

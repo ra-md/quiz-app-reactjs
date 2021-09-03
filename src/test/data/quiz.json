@@ -1,0 +1,65 @@
+{
+  "response_code": 0,
+  "results": [
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "This movie contains the quote, &quot;I feel the need ... the need for speed!&quot;",
+      "correct_answer": "Top Gun",
+      "incorrect_answers": [
+        "Days of Thunder",
+        "The Color of Money",
+        "Cocktail"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "In the movie &quot;Spaceballs&quot;, what are the Spaceballs attempting to steal from Planet Druidia?",
+      "correct_answer": "Air",
+      "incorrect_answers": [
+        "The Schwartz",
+        "Princess Lonestar",
+        "Meatballs"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "When does &quot;Rogue One: A Star Wars Story&quot; take place chronologically in the series?",
+      "correct_answer": "Between Episode 3 and 4",
+      "incorrect_answers": [
+        "After Episode 6",
+        "Before Episode 1",
+        "Between Episode 4 and 5"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What historical time period was the center of the Assassin&rsquo;s Creed movie (2016)?",
+      "correct_answer": "Spanish Inquisition",
+      "incorrect_answers": [
+        "Victorian England",
+        "French Revolution",
+        "Colonial America"
+      ]
+    },
+    {
+      "category": "Entertainment: Film",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "Who plays Jack Burton in the movie &quot;Big Trouble in Little China?&quot;",
+      "correct_answer": "Kurt Russell",
+      "incorrect_answers": [
+        "Patrick Swayze",
+        "John Cusack",
+        "Harrison Ford"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,6 @@
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {useHistory} from 'react-router-dom'
-import {createMemoryHistory} from 'history'
 import {QuizForm} from '../quiz-form'
 
 jest.mock('react-router-dom', () => ({
@@ -20,7 +19,7 @@ test('submit quiz data correctly', () => {
 
 	const category = '21'
 	const difficulty = 'easy'
-	const amount = '5'
+	const amount = '2'
 
 	const quizCategory = screen.getByLabelText(/category/i)
 	const quizDifficulty = screen.getByLabelText(/difficulty/i)
@@ -29,6 +28,7 @@ test('submit quiz data correctly', () => {
 
 	userEvent.selectOptions(quizCategory, [category])
 	userEvent.selectOptions(quizDifficulty, [difficulty])
+	userEvent.clear(numberOfQuestions)
 	userEvent.type(numberOfQuestions, amount)
 	userEvent.click(submit)
 
