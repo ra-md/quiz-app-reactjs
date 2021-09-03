@@ -5,7 +5,6 @@ import {
   Container,
   Text,
   Flex,
-  Center,
   VStack,
   Button,
   Progress,
