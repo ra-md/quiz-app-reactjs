@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {useHistory, useLocation} from 'react-router-dom'
-import {QuizResult} from '../quiz-result'
+import QuizResult from '../quiz-result'
 
 jest.mock('react-router-dom', () => ({
 	useHistory: jest.fn(),

@@ -1,6 +1,11 @@
-import React from 'react'
-import {QuizMain} from '../components/quiz/quiz-main'
+import React, {lazy, Suspense} from 'react'
+import {Loading} from '../components/Loading'
+const QuizMain = lazy(() => import('../components/quiz/quiz-main'))
 
 export function Quiz() {
-	return <QuizMain/>
+	return (
+		<Suspense fallback={<Loading/>}>
+			<QuizMain/>
+		</Suspense>
+	)
 }

@@ -135,7 +135,7 @@ const difficulties = [
 	},
 ]
 
-export function QuizForm() {
+export default function QuizForm() {
 	const history = useHistory()
 
 	const categoryRef = useRef(null)
@@ -181,7 +181,7 @@ export function QuizForm() {
 			    </NumberInputStepper>
 			  </NumberInput>
 				<Button
-	        colorScheme="teal"
+	        colorScheme='blue'
 	        type="submit"
 	        onClick={handleSubmit}
 	        aria-label='start quiz'

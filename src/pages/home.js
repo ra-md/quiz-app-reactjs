@@ -4,10 +4,15 @@ import {
   Center,
   Container
 } from '@chakra-ui/react'
-import { QuizForm } from '../components/quiz/quiz-form'
+import QuizForm from '../components/quiz/quiz-form'
+import { ColorModeSwitcher } from '../components/ColorModeSwitcher'
 
 export function Home() {
 	return (
+    <>
+    <Box position="absolute" right={0} p={2}>
+      <ColorModeSwitcher/>
+    </Box>
     <Container>
   		<Box textAlign='center' fontSize='xl'>
         <Center minH='100vh'>
@@ -15,5 +20,6 @@ export function Home() {
         </Center>
       </Box>
     </Container>
+    </>
 	)
 }

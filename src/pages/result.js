@@ -1,16 +1,19 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import {
   Flex,
   Container,
 } from '@chakra-ui/react'
-import {QuizResult} from '../components/quiz/quiz-result'
+import {Loading} from '../components/Loading'
+const QuizResult = lazy(() => import('../components/quiz/quiz-result'))
 
 export function Result() {
 	return (
-    <Container textAlign='center'>
-      <Flex minH="100vh" direction='column' justify='center'>
-        <QuizResult/>
-      </Flex>
-    </Container>
+    <Suspense fallback={<Loading/>}>
+      <Container textAlign='center'>
+        <Flex minH="100vh" direction='column' justify='center'>
+          <QuizResult/>
+        </Flex>
+      </Container>
+    </Suspense>
 	)
 }

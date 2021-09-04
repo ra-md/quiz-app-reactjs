@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import htmr from 'htmr'
 
 export function QuizAnswerItem({
   answer,
@@ -15,16 +16,12 @@ export function QuizAnswerItem({
 
   function selectAnswer() {
     if (answer === correctAnswer) {
-      // set button color to green
       setButtonColor('green');
-      // update score
       updateScore();
     } else {
-      // set button color to red
       setButtonColor('red');
     }
 
-    // enable next button
     enableNextBtn();
     disableAllAnswer();
     setShowTheCorrectAnswer();
@@ -39,8 +36,10 @@ export function QuizAnswerItem({
       colorScheme={
         answer === correctAnswer && showTheCorrectAnswer ? 'green' : buttonColor
       }
+      display='inline-block'
+      whiteSpace='normal'
     >
-      {answer}
+      {htmr(answer)}
     </Button>
   );
 }

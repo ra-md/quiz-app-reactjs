@@ -9,13 +9,14 @@ import {
   Button,
   Progress,
 } from '@chakra-ui/react';
+import shuffle from 'lodash/shuffle';
+import htmr from 'htmr'
 import { getQuiz } from '../../lib/api';
-import { Loading } from '../Spinner';
+import { Loading } from '../Loading';
 import { QuizAnswerList } from './quiz-answer-list';
 import { QuizAnswerItem } from './quiz-answer-item';
-import shuffle from 'lodash/shuffle';
 
-export function QuizMain() {
+export default function QuizMain() {
   const location = useLocation();
   const history = useHistory();
   const [score, setScore] = useState(0);
@@ -46,7 +47,17 @@ export function QuizMain() {
     }
   }, [data, currentQuiz, isSuccess]);
 
-  function handleNextBtn() {
+  useEffect(() => {
+    function beforeUnload(event) {
+      event.returnValue = ''
+    }
+
+    window.addEventListener('beforeunload', beforeUnload)
+
+    return () => window.removeEventListener('beforeunload', beforeUnload)
+  })
+
+  function nextBtn() {
     setCurrentQuiz(currentQuiz + 1);
     setDisableAllAnswer(false);
     setDisableNextBtn(true);
@@ -77,12 +88,12 @@ export function QuizMain() {
   return (
     data != null && (
       <Flex flexDirection="column" justify="space-between" h="100vh">
-        <Container maxW="container.lg">
+        <Container maxW="container.xl">
           <Flex justify="space-between" w="100%" mt={8}>
-            <Text fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold">
+            <Text fontSize={{ base: 'sm', md: '2xl' }} fontWeight="bold">
               {data[currentQuiz].category}
             </Text>
-            <Text fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold">
+            <Text fontSize={{ base: 'sm', md: '2xl' }} fontWeight="bold">
               Difficulty: {data[currentQuiz].difficulty}
             </Text>
           </Flex>
@@ -93,10 +104,10 @@ export function QuizMain() {
               align="center"
               fontSize={{ base: '2xl', md: '3xl' }}
               fontWeight="bold"
-              // dangerouslySetInnerHTML={{__html: data[currentQuiz].question}}
+              wordBreak="break-word"
               mb={8}
             >
-              {data[currentQuiz].question}
+              {htmr(data[currentQuiz].question)}
             </Text>
             <QuizAnswerList>
               {answers.map(answer => (
@@ -117,13 +128,14 @@ export function QuizMain() {
               {currentQuiz < data.length - 1 ? (
                 <Button
                   disabled={disableNextBtn}
-                  colorScheme="green"
-                  onClick={handleNextBtn}
+                  colorScheme="blue"
+                  onClick={nextBtn}
                 >
                   Next
                 </Button>
               ) : (
                 <Button
+                  disabled={disableNextBtn}
                   onClick={() => history.replace('/quiz/result', { score })}
                 >
                   Result
@@ -134,7 +146,7 @@ export function QuizMain() {
         </Container>
         <Progress
           size="sm"
-          colorScheme="green"
+          colorScheme="blue"
           value={((currentQuiz + 1) * 100) / data.length}
         />
       </Flex>
