@@ -38,6 +38,11 @@ export function QuizAnswerItem({
       }
       display='inline-block'
       whiteSpace='normal'
+      variant='outline'
+      borderRadius='full'
+      minH={16}
+      fontSize='xl'
+      borderWidth={2}
     >
       {htmr(answer)}
     </Button>

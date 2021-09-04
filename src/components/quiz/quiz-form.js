@@ -10,7 +10,8 @@ import {
 	NumberInputStepper,
 	NumberIncrementStepper,
 	NumberDecrementStepper,
-	VStack
+	VStack,
+	Box
 } from '@chakra-ui/react'
 
 const categories = [
@@ -156,34 +157,41 @@ export default function QuizForm() {
 				spacing={4}
 			  align="stretch"
 			>
-				<FormLabel htmlFor='category'>Category</FormLabel>
-				<Select id='category' ref={categoryRef}>
-					{
-						categories.map(category => {
-							return <option value={category.value} key={category.value}>{category.name}</option>
-						})
-					}
-				</Select>
-				<FormLabel htmlFor='difficulty'>Difficulty</FormLabel>
-				<Select id='difficulty' ref={difficultyRef}>
-					{
-						difficulties.map(difficulty => {
-							return <option value={difficulty.value} key={difficulty.value}>{difficulty.name}</option>
-						})
-					}
-				</Select>
-				<FormLabel htmlFor='amount'>Number of questions</FormLabel>
-			  <NumberInput defaultValue={5} max={10} min={1} id='amount'>
-			    <NumberInputField ref={amountRef}/>
-			    <NumberInputStepper>
-			      <NumberIncrementStepper />
-			      <NumberDecrementStepper />
-			    </NumberInputStepper>
-			  </NumberInput>
+				<Box>
+					<FormLabel htmlFor='category'>Category</FormLabel>
+					<Select id='category' ref={categoryRef} variant='filled'>
+						{
+							categories.map(category => {
+								return <option value={category.value} key={category.value}>{category.name}</option>
+							})
+						}
+					</Select>
+				</Box>
+				<Box>	
+					<FormLabel htmlFor='difficulty'>Difficulty</FormLabel>
+					<Select id='difficulty' ref={difficultyRef} variant='filled'>
+						{
+							difficulties.map(difficulty => {
+								return <option value={difficulty.value} key={difficulty.value}>{difficulty.name}</option>
+							})
+						}
+					</Select>
+				</Box>
+				<Box>
+					<FormLabel htmlFor='amount'>Number of questions</FormLabel>
+				  <NumberInput variant='filled' defaultValue={5} max={10} min={1} id='amount'>
+				    <NumberInputField ref={amountRef}/>
+				    <NumberInputStepper>
+				      <NumberIncrementStepper border={0} />
+				      <NumberDecrementStepper border={0} />
+				    </NumberInputStepper>
+				  </NumberInput>
+				</Box>
 				<Button
 	        colorScheme='blue'
 	        type="submit"
 	        onClick={handleSubmit}
+	        borderRadius="full"
 	        aria-label='start quiz'
 	      >
 	        Start

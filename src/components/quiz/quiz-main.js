@@ -90,10 +90,10 @@ export default function QuizMain() {
       <Flex flexDirection="column" justify="space-between" h="100vh">
         <Container maxW="container.xl">
           <Flex justify="space-between" w="100%" mt={8}>
-            <Text fontSize={{ base: 'sm', md: '2xl' }} fontWeight="bold">
+            <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight="semibold">
               {data[currentQuiz].category}
             </Text>
-            <Text fontSize={{ base: 'sm', md: '2xl' }} fontWeight="bold">
+            <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight="semibold">
               Difficulty: {data[currentQuiz].difficulty}
             </Text>
           </Flex>
@@ -103,7 +103,7 @@ export default function QuizMain() {
             <Text
               align="center"
               fontSize={{ base: '2xl', md: '3xl' }}
-              fontWeight="bold"
+              fontWeight="semibold"
               wordBreak="break-word"
               mb={8}
             >
@@ -129,13 +129,20 @@ export default function QuizMain() {
                 <Button
                   disabled={disableNextBtn}
                   colorScheme="blue"
+                  borderRadius='full'
                   onClick={nextBtn}
+                  minH={12}
+                  minW={36}
                 >
                   Next
                 </Button>
               ) : (
                 <Button
                   disabled={disableNextBtn}
+                  borderRadius='full'
+                  colorScheme="blue"
+                  minH={12}
+                  minW={36}
                   onClick={() => history.replace('/quiz/result', { score })}
                 >
                   Result
