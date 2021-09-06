@@ -23,6 +23,12 @@ beforeAll(() => server.listen());
 afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
 
+const quizFormValue = {
+  category: '9',
+  difficulty: 'hard',
+  amount: 1,
+}
+
 test('redirect to / if state undefined', () => {
   const mockReplace = jest.fn();
 
@@ -42,14 +48,8 @@ test('redirect to / if state undefined', () => {
 test('render error', async () => {
   const testErrorMessage = 'Oh no, something bad happened';
 
-  const quiz = {
-    category: '9',
-    difficulty: 'hard',
-    amount: 1,
-  };
-
   useLocation.mockImplementation(() => ({
-    state: quiz,
+    state: quizFormValue,
   }));
 
   server.use(
@@ -66,14 +66,8 @@ test('render error', async () => {
 });
 
 test('render quiz correctly', async () => {
-  const quiz = {
-    category: '11',
-    difficulty: 'easy',
-    amount: 5,
-  };
-
   useLocation.mockImplementation(() => ({
-    state: quiz,
+    state: quizFormValue,
   }));
 
   server.use(
@@ -119,14 +113,8 @@ test('render quiz correctly', async () => {
 });
 
 test('disable answer after user select the answer', async () => {
-  const quiz = {
-    category: '11',
-    difficulty: 'easy',
-    amount: 5,
-  };
-
   useLocation.mockImplementation(() => ({
-    state: quiz,
+    state: quizFormValue,
   }));
 
   server.use(
@@ -187,14 +175,8 @@ test('disable answer after user select the answer', async () => {
 });
 
 test('user click next', async () => {
-  const quiz = {
-    category: '11',
-    difficulty: 'easy',
-    amount: 5,
-  };
-
   useLocation.mockImplementation(() => ({
-    state: quiz,
+    state: quizFormValue,
   }));
 
   server.use(
@@ -261,18 +243,12 @@ test('user click next', async () => {
 });
 
 test('go to result page', async () => {
-  const quiz = {
-    category: '11',
-    difficulty: 'easy',
-    amount: 5,
-  };
-
   const result = fakeQuizData.results[fakeQuizData.results.length - 1];
 
   const mockReplace = jest.fn();
 
   useLocation.mockImplementation(() => ({
-    state: quiz,
+    state: quizFormValue,
   }));
 
   useHistory.mockImplementation(() => ({
