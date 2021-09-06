@@ -87,7 +87,7 @@ export default function QuizMain() {
 
   return (
     data != null && (
-      <Flex flexDirection="column" justify="space-between" h="100vh">
+      <Flex flexDirection="column" justify="space-between" minH="100vh">
         <Container maxW="container.xl">
           <Flex justify="space-between" w="100%" mt={8}>
             <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight="semibold">
@@ -98,11 +98,11 @@ export default function QuizMain() {
             </Text>
           </Flex>
         </Container>
-        <Container maxW="container.lg">
+        <Container maxW="container.lg" my={4}>
           <VStack>
             <Text
               align="center"
-              fontSize={{ base: '2xl', md: '3xl' }}
+              fontSize={{ base: 'xl', md: '3xl' }}
               fontWeight="semibold"
               wordBreak="break-word"
               mb={8}

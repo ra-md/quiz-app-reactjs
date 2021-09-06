@@ -14,7 +14,7 @@ export default function QuizResult() {
 	return location.state && (
 		<>
 			<Text fontSize='3xl' fontWeight='bold' mb={16}>Your score: {location.state.score}</Text>
-			<Button colorScheme='blue' onClick={() => history.push('/')}>Restart</Button>
+			<Button colorScheme='blue' borderRadius='full' onClick={() => history.push('/')}>Restart</Button>
 		</>
 	)
 }

@@ -38,11 +38,11 @@ export function QuizAnswerItem({
       }
       display='inline-block'
       whiteSpace='normal'
-      variant='outline'
+      variant={showTheCorrectAnswer ? 'solid' : 'outline'}
       borderRadius='full'
-      minH={16}
+      minH={{base: 12, md: 16}}
       fontSize='xl'
-      borderWidth={2}
+      borderWidth={showTheCorrectAnswer ? 0 : 2}
     >
       {htmr(answer)}
     </Button>

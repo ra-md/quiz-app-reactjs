@@ -7,9 +7,6 @@ import {
 	Button,
 	NumberInput,
 	NumberInputField,
-	NumberInputStepper,
-	NumberIncrementStepper,
-	NumberDecrementStepper,
 	VStack,
 	Box
 } from '@chakra-ui/react'
@@ -159,7 +156,7 @@ export default function QuizForm() {
 			>
 				<Box>
 					<FormLabel htmlFor='category'>Category</FormLabel>
-					<Select id='category' ref={categoryRef} variant='filled'>
+					<Select id='category' ref={categoryRef} variant='outline' borderRadius="full">
 						{
 							categories.map(category => {
 								return <option value={category.value} key={category.value}>{category.name}</option>
@@ -169,7 +166,7 @@ export default function QuizForm() {
 				</Box>
 				<Box>	
 					<FormLabel htmlFor='difficulty'>Difficulty</FormLabel>
-					<Select id='difficulty' ref={difficultyRef} variant='filled'>
+					<Select id='difficulty' ref={difficultyRef} variant='outline' borderRadius="full">
 						{
 							difficulties.map(difficulty => {
 								return <option value={difficulty.value} key={difficulty.value}>{difficulty.name}</option>
@@ -179,12 +176,8 @@ export default function QuizForm() {
 				</Box>
 				<Box>
 					<FormLabel htmlFor='amount'>Number of questions</FormLabel>
-				  <NumberInput variant='filled' defaultValue={5} max={10} min={1} id='amount'>
-				    <NumberInputField ref={amountRef}/>
-				    <NumberInputStepper>
-				      <NumberIncrementStepper border={0} />
-				      <NumberDecrementStepper border={0} />
-				    </NumberInputStepper>
+				  <NumberInput variant='outline' defaultValue={5} max={10} min={1} id='amount'>
+				    <NumberInputField ref={amountRef} borderRadius="full"/>
 				  </NumberInput>
 				</Box>
 				<Button
