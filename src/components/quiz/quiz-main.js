@@ -136,7 +136,8 @@ export default function QuizMain() {
                   />
                 ))}
               </QuizAnswerList>
-              <Flex pt={8} justify="flex-end" w="100%">
+              <Flex pt={8} alignItems='center' justify="space-between" w="100%">
+                <Text ml={4}>{currentQuiz+1} of {data.length} questions</Text>
                 {currentQuiz < data.length - 1 ? (
                   <Button
                     disabled={disableNextBtn}
