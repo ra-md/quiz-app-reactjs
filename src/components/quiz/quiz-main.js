@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useLocation, useHistory } from 'react-router-dom';
 import {
-  Container,
   Text,
   Flex,
-  VStack,
   Button,
   Progress,
 } from '@chakra-ui/react';
 import shuffle from 'lodash/shuffle';
 import htmr from 'htmr'
+import { motion, AnimatePresence } from "framer-motion"
 import { getQuiz } from '../../lib/api';
 import { Loading } from '../Loading';
 import { QuizAnswerList } from './quiz-answer-list';
 import { QuizAnswerItem } from './quiz-answer-item';
+
+const MotionFlex = motion(Flex)
 
 export default function QuizMain() {
   const location = useLocation();
@@ -88,69 +89,81 @@ export default function QuizMain() {
   return (
     data != null && (
       <Flex flexDirection="column" justify="space-between" minH="100vh">
-        <Container maxW="container.xl">
-          <Flex justify="space-between" w="100%" mt={8}>
-            <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight="semibold">
-              {data[currentQuiz].category}
-            </Text>
-            <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight="semibold">
-              Difficulty: {data[currentQuiz].difficulty}
-            </Text>
-          </Flex>
-        </Container>
-        <Container maxW="container.lg" my={4}>
-          <VStack>
-            <Text
-              align="center"
-              fontSize={{ base: 'xl', md: '3xl' }}
-              fontWeight="semibold"
-              wordBreak="break-word"
-              mb={8}
+        <Flex px={{base: 4, md: 12}} justify="space-between" w="100%" mt={4}>
+          <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight="semibold">
+            {data[currentQuiz].category}
+          </Text>
+          <Text fontSize={{ base: 'sm', md: 'xl' }} fontWeight="semibold">
+            Difficulty: {data[currentQuiz].difficulty}
+          </Text>
+        </Flex>
+        <Flex overflow='hidden' position='relative' flexGrow={1} alignItems='center'>
+          <AnimatePresence>
+            <MotionFlex
+              p={{base: 4, md: 24}}
+              flexDirection='column'
+              alignItems='center'
+              justifyContent='center'
+              position='absolute'
+              w='100%'
+              key={currentQuiz}
+              initial={{ x: '100vw' }}
+              animate={{ x: '0vw' }}
+              exit={{ x: '-100vw' }}
+              transition={{x: { type: 'spring', stiffness: 300, damping: 30 }}}
             >
-              {htmr(data[currentQuiz].question)}
-            </Text>
-            <QuizAnswerList>
-              {answers.map(answer => (
-                <QuizAnswerItem
-                  key={answer}
-                  disable={disableAllAnswer}
-                  answer={answer}
-                  correctAnswer={data[currentQuiz].correct_answer}
-                  updateScore={updateScore}
-                  showTheCorrectAnswer={showTheCorrectAnswer}
-                  setShowTheCorrectAnswer={() => setShowTheCorrectAnswer(true)}
-                  enableNextBtn={() => setDisableNextBtn(false)}
-                  disableAllAnswer={() => setDisableAllAnswer(true)}
-                />
-              ))}
-            </QuizAnswerList>
-            <Flex pt={8} justify="flex-end" w="100%">
-              {currentQuiz < data.length - 1 ? (
-                <Button
-                  disabled={disableNextBtn}
-                  colorScheme="blue"
-                  borderRadius='full'
-                  onClick={nextBtn}
-                  minH={12}
-                  minW={36}
-                >
-                  Next
-                </Button>
-              ) : (
-                <Button
-                  disabled={disableNextBtn}
-                  borderRadius='full'
-                  colorScheme="blue"
-                  minH={12}
-                  minW={36}
-                  onClick={() => history.replace('/quiz/result', { score })}
-                >
-                  Result
-                </Button>
-              )}
-            </Flex>
-          </VStack>
-        </Container>
+              <Text
+                align="center"
+                fontSize={{ base: 'xl', md: '3xl' }}
+                fontWeight="semibold"
+                wordBreak="break-word"
+                mb={8}
+              >
+                {htmr(data[currentQuiz].question)}
+              </Text>
+              <QuizAnswerList>
+                {answers.map(answer => (
+                  <QuizAnswerItem
+                    key={answer}
+                    disable={disableAllAnswer}
+                    answer={answer}
+                    correctAnswer={data[currentQuiz].correct_answer}
+                    updateScore={updateScore}
+                    showTheCorrectAnswer={showTheCorrectAnswer}
+                    setShowTheCorrectAnswer={() => setShowTheCorrectAnswer(true)}
+                    enableNextBtn={() => setDisableNextBtn(false)}
+                    disableAllAnswer={() => setDisableAllAnswer(true)}
+                  />
+                ))}
+              </QuizAnswerList>
+              <Flex pt={8} justify="flex-end" w="100%">
+                {currentQuiz < data.length - 1 ? (
+                  <Button
+                    disabled={disableNextBtn}
+                    colorScheme="blue"
+                    borderRadius='full'
+                    onClick={nextBtn}
+                    minH={12}
+                    minW={36}
+                  >
+                    Next
+                  </Button>
+                ) : (
+                  <Button
+                    disabled={disableNextBtn}
+                    borderRadius='full'
+                    colorScheme="blue"
+                    minH={12}
+                    minW={36}
+                    onClick={() => history.replace('/quiz/result', { score })}
+                  >
+                    Result
+                  </Button>
+                )}
+              </Flex>
+            </MotionFlex>
+          </AnimatePresence>
+        </Flex>
         <Progress
           size="sm"
           colorScheme="blue"
