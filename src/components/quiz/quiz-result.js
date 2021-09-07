@@ -6,7 +6,7 @@ import {useAnimateNumber} from '../../hooks/useAnimateNumber'
 export default function QuizResult() {
 	const location = useLocation()
 	const history = useHistory()
-	const value = useAnimateNumber({from: 0, to: location.state.score})
+	const value = useAnimateNumber({from: 0, to: location.state ? location.state.score : 0})
 
 	if(location.state == null) {
 		history.replace('/')

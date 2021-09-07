@@ -29,7 +29,7 @@ test('replace / if score null', () => {
 	expect(mockReplace).toHaveBeenCalledWith('/')
 })
 
-test('render score correctly', () => {
+test('render score correctly', async () => {
 	const score = 100
 
 	useLocation.mockImplementation(() => {
@@ -46,7 +46,9 @@ test('render score correctly', () => {
 
 	render(<QuizResult/>)
 
-	expect(screen.getByText(`Your score: ${score}`)).toBeInTheDocument()
+	const scoreEl = await screen.findByText(`Your score: ${score}`)
+
+	expect(scoreEl).toBeInTheDocument()
 })
 
 test('restart the quiz', () => {
@@ -66,7 +68,7 @@ test('restart the quiz', () => {
 
 	render(<QuizResult/>)
 
-	userEvent.click(screen.getByRole('button', {name: /restart/i}))
+	userEvent.click(screen.getByRole('button', {name: /play again/i}))
 
 	expect(mockPush).toHaveBeenCalledWith('/')
 })
