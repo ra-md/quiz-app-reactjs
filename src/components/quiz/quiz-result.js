@@ -1,6 +1,7 @@
 import React from 'react'
 import {useLocation, useHistory} from 'react-router-dom'
-import { Button, Text } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
+import {Counter} from '../counter'
 
 export default function QuizResult() {
 	const location = useLocation()
@@ -13,8 +14,9 @@ export default function QuizResult() {
 
 	return location.state && (
 		<>
-			<Text fontSize='3xl' fontWeight='bold' mb={16}>Your score: {location.state.score}</Text>
-			<Button colorScheme='blue' borderRadius='full' onClick={() => history.push('/')}>Restart</Button>
+			{/*<Text fontSize='3xl' fontWeight='bold' mb={16}>Your score: {location.state.score}</Text>*/}
+			<Counter from={0} to={location.state.score}/>
+			<Button colorScheme='blue' borderRadius='full' onClick={() => history.push('/')}>Play Again</Button>
 		</>
 	)
 }
