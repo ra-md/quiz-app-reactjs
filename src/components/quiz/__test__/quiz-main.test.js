@@ -29,7 +29,7 @@ const quizFormValue = {
   amount: 1,
 }
 
-test('redirect to / if state undefined', () => {
+test('redirect to "/"" if state undefined', () => {
   const mockReplace = jest.fn();
 
   useLocation.mockImplementation(() => ({
@@ -45,7 +45,7 @@ test('redirect to / if state undefined', () => {
   expect(mockReplace).toHaveBeenCalledWith('/');
 });
 
-test('render error', async () => {
+test('render error correctly', async () => {
   const testErrorMessage = 'Oh no, something bad happened';
 
   useLocation.mockImplementation(() => ({
@@ -78,12 +78,10 @@ test('render quiz correctly', async () => {
 
   reactQueryRender(<QuizMain />);
 
-  // expect loading
   expect(screen.getByLabelText(/loading/i)).toBeInTheDocument();
 
   await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i));
 
-  // expect quiz category
   expect(
     screen.getByText(fakeQuizData.results[0].category)
   ).toBeInTheDocument();
@@ -92,12 +90,10 @@ test('render quiz correctly', async () => {
     screen.getByText(`Difficulty: ${fakeQuizData.results[0].difficulty}`)
   ).toBeInTheDocument();
 
-  // // expect quiz question rendered
   expect(
     screen.getByText(htmr(fakeQuizData.results[0].question))
   ).toBeInTheDocument();
 
-  // expect quiz answer rendered
   expect(
     screen.getByText(htmr(fakeQuizData.results[0].correct_answer))
   ).toBeVisible();
@@ -112,7 +108,7 @@ test('render quiz correctly', async () => {
   ).toBeInTheDocument();
 });
 
-test('disable answer after user select the answer', async () => {
+test('disable answer after user select one of the answer', async () => {
   useLocation.mockImplementation(() => ({
     state: quizFormValue,
   }));
@@ -127,7 +123,6 @@ test('disable answer after user select the answer', async () => {
 
   await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i));
 
-  // expect score 0
   expect(
     screen.getByRole('button', {
       name: htmr(fakeQuizData.results[0].incorrect_answers[0]),
@@ -144,14 +139,12 @@ test('disable answer after user select the answer', async () => {
     })
   ).not.toHaveAttribute('disabled');
 
-  // click
   userEvent.click(
     screen.getByRole('button', {
       name: htmr(fakeQuizData.results[0].correct_answer),
     })
   );
 
-  // expect score 0
   expect(
     screen.getByRole('button', {
       name: htmr(fakeQuizData.results[0].correct_answer),
@@ -174,7 +167,7 @@ test('disable answer after user select the answer', async () => {
   ).toHaveAttribute('disabled');
 });
 
-test('user click next', async () => {
+test('render next quiz if next button clicked', async () => {
   useLocation.mockImplementation(() => ({
     state: quizFormValue,
   }));
@@ -189,14 +182,12 @@ test('user click next', async () => {
 
   await waitForElementToBeRemoved(() => screen.getByLabelText(/loading/i));
 
-  // expect next button disable
   expect(
     screen.getByRole('button', {
       name: /next/i,
     })
   ).toHaveAttribute('disabled');
 
-  // user has answered the question
   userEvent.click(
     screen.getByRole('button', {
       name: htmr(fakeQuizData.results[0].correct_answer),
@@ -215,7 +206,6 @@ test('user click next', async () => {
     })
   );
 
-  // next button clicked and quiz changed
   expect(
     screen.getByText(fakeQuizData.results[1].category)
   ).toBeInTheDocument();
@@ -242,7 +232,7 @@ test('user click next', async () => {
   ).toBeInTheDocument();
 });
 
-test('go to result page', async () => {
+test('render result page if result button clicked', async () => {
   const result = fakeQuizData.results[fakeQuizData.results.length - 1];
 
   const mockReplace = jest.fn();

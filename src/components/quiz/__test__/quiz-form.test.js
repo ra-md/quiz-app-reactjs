@@ -7,7 +7,7 @@ jest.mock('react-router-dom', () => ({
 	useHistory: jest.fn()
 }))
 
-test('submit quiz data correctly', () => {
+test('submitting the form with category, difficulty and amount', () => {
 
 	const push = jest.fn()
 

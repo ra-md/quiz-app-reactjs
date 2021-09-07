@@ -8,7 +8,7 @@ jest.mock('react-router-dom', () => ({
 	useLocation: jest.fn()
 }))
 
-test('replace / if score null', () => {
+test('replace route to "/"" if state null', () => {
 
 	const mockReplace = jest.fn()
 
@@ -51,7 +51,7 @@ test('render score correctly', async () => {
 	expect(scoreEl).toBeInTheDocument()
 })
 
-test('restart the quiz', () => {
+test('play again the quiz if "Play again" button clicked', () => {
 	const mockPush = jest.fn()
 
 	useLocation.mockImplementation(() => {

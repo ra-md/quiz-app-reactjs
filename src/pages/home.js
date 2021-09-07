@@ -5,7 +5,7 @@ import {
   Container
 } from '@chakra-ui/react'
 import QuizForm from '../components/quiz/quiz-form'
-import { ColorModeSwitcher } from '../components/ColorModeSwitcher'
+import { ColorModeSwitcher } from '../components/color-mode-switcher'
 
 export function Home() {
 	return (
